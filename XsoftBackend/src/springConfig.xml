@@ -11,11 +11,11 @@
 		
 		<property name="driverClassName" value ="com.mysql.jdbc.Driver"/>
 		
-		<property name="url" value="jdbc:mysql://localhost:3306/claseiweb"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/xsoftdb"/>
 		
-		<property name="username" value="ingenieriaweb"/>
+		<property name="username" value="xsoft"/>
 		
-		<property name="password" value="ingenieriaweb" />	
+		<property name="password" value="xsoft" />	
 	</bean>
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -24,11 +24,12 @@
 		
 		<property name="mappingResources">
 			<list>
-				<value> co/edu/udea/ingenieriaweb/dao/mapping/Ciudad.hbm.xml </value>
-				<value>co/edu/udea/ingenieriaweb/dao/mapping/Usuario.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/dao/mapping/Cliente.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/dao/mapping/Rol.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/dao/mapping/Direccion.hbm.xml</value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Cliente.hbm.xml </value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Servicios.hbm.xml</value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/ServiciosVenta.hbm.xml</value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Tipodocumento.hbm.xml</value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Usuario.hbm.xml</value>
+				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Venta.hbm.xml</value>
 			</list>
 		</property> 
 		
@@ -56,15 +57,11 @@
 	
 	</bean>
 	
-	<bean id="ciudadDAO" class="co.edu.udea.ingenieriaweb.dao.imp.CiudadDAOImp">
+	<bean id="ClienteDAO" class="co.edu.udea.ingenieriaweb.xsoftbackend.dao.imp.ClienteDAOImp">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	
 	</bean>
 	
-	<bean id="clienteDAO" class="co.edu.udea.ingenieriaweb.dao.imp.ClienteDAOImp">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	
-	</bean>
 	
 	<bean id="clienteBL" class="co.edu.udea.ingenieriaweb.bl.imp.ClienteBLImp">
 		<property name="clienteDAO" ref="clienteDAO"/>
