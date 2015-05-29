@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mapping.Tipodocumento" table="tipodocumento" catalog="xsoftdb" optimistic-lock="version">
+        <id name="idTipoDocumento" type="java.lang.Integer">
+            <column name="idTipoDocumento" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="abreviatura" type="string">
+            <column name="abreviatura" length="10" not-null="true" />
+        </property>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipoId" not-null="true" />
+            </key>
+            <one-to-many class="mapping.Cliente" />
+        </set>
+    </class>
+</hibernate-mapping>
