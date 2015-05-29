@@ -1,0 +1,13 @@
+
+	Al Bajar la base de datos al pc personal, se debe importar com phpmyadmin y se debe crear el usuario con la siguiente información
+
+	Nombre usuario: xsoft
+	Contraseña: xsoft
+
+	Este usuario y contraseña es el que debe estar mapeado en el archivo de configuracion de Spring.
+
+
+
+	Como se hace:
+	En phpmyadmin ir a la seccion Bases de Datos, seleccionar la Base de datos del proyecto, ir a la pestaña privilegios, Seleccionar Agregar nuevo Usuario, 
+	igresar el nombre y contraseña, marcar todos los privilegios. 

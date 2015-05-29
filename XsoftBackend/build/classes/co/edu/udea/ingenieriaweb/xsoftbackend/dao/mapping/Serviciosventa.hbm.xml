@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mapping.Serviciosventa" table="serviciosventa" catalog="xsoftdb" optimistic-lock="version">
+        <composite-id name="id" class="mapping.ServiciosventaId">
+            <key-property name="idservicioVenta" type="int">
+                <column name="idservicioVenta" />
+            </key-property>
+            <key-property name="idservicio" type="int">
+                <column name="idservicio" />
+            </key-property>
+            <key-property name="idventa" type="int">
+                <column name="idventa" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="servicios" class="mapping.Servicios" update="false" insert="false" fetch="select">
+            <column name="idservicio" not-null="true" />
+        </many-to-one>
+        <many-to-one name="venta" class="mapping.Venta" update="false" insert="false" fetch="select">
+            <column name="idventa" not-null="true" />
+        </many-to-one>
+        <property name="totalventa" type="double">
+            <column name="totalventa" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaCaducidad" type="date">
+            <column name="fechaCaducidad" length="10" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="fechaVenta" type="date">
+            <column name="fechaVenta" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
