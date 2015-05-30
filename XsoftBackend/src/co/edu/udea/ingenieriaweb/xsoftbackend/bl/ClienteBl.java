@@ -2,6 +2,7 @@ package co.edu.udea.ingenieriaweb.xsoftbackend.bl;
 
 import co.edu.udea.ingenieriaweb.xsoftbackend.dto.ClienteId;
 import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Tipodocumento;
+import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario;
 import co.edu.udea.ingenieriaweb.xsoftbackend.exception.DataBaseException;
 import co.edu.udea.ingenieriaweb.xsoftbackend.exception.LogicException;
 
@@ -26,9 +27,11 @@ public interface ClienteBl {
 	 * @param direccion
 	 * @param usuarioCrea
 	 * @throws DataBaseException
+	 * @throws LogicException
 	 */
 	 public void GuardarCliente(ClienteId id, Tipodocumento tipoDocumento,String nombres,
 			 String apellidos, String telefonoFijo, String telefonomovil, String email,
-			 String direccion, String usuarioCrea) throws DataBaseException, LogicException;
+			 String direccion, Usuario usuarioCrea) throws DataBaseException, LogicException;
 
 }
+

@@ -1,5 +1,7 @@
 package co.edu.udea.ingenieriaweb.xsoftbackend.dto;
 
+import java.util.Date;
+
 
 
 /**
@@ -12,12 +14,14 @@ public class Cliente  implements java.io.Serializable {
 
      private ClienteId id;
      private Tipodocumento tipodocumento;
+     private Usuario usuarioCrea;
      private String nombres;
      private String apellidos;
      private String telefonoFijo;
      private String telefonoMovil;
      private String email;
      private String direccion;
+     private Date fechaCreacion;
      
 
      /**
@@ -162,6 +166,23 @@ public class Cliente  implements java.io.Serializable {
         this.direccion = direccion;
     }
 
+	public Usuario getUsuarioCrea() {
+		return usuarioCrea;
+	}
+
+	public void setUsuarioCrea(Usuario usuarioCrea) {
+		this.usuarioCrea = usuarioCrea;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+    
 
 
 

@@ -25,11 +25,11 @@
 		<property name="mappingResources">
 			<list>
 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Cliente.hbm.xml </value>
-				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Servicios.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/ServiciosVenta.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Tipodocumento.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Usuario.hbm.xml</value>
-				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Venta.hbm.xml</value>
+<!-- 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Servicios.hbm.xml</value> -->
+<!-- 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/ServiciosVenta.hbm.xml</value> -->
+<!-- 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Tipodocumento.hbm.xml</value> -->
+<!-- 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Usuario.hbm.xml</value> -->
+<!-- 				<value>co/edu/udea/ingenieriaweb/xsoftbackend/dao/mapping/Venta.hbm.xml</value> -->
 			</list>
 		</property> 
 		
@@ -57,7 +57,7 @@
 	
 	</bean>
 	
-	<bean id="ClienteDAO" class="co.edu.udea.ingenieriaweb.xsoftbackend.dao.imp.ClienteDAOImp">
+	<bean id="clienteDAO" class="co.edu.udea.ingenieriaweb.xsoftbackend.dao.imp.ClienteDAOImp">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	
 	</bean>

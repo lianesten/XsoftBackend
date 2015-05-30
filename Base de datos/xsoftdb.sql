@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2015 a las 06:32:27
+-- Tiempo de generación: 30-05-2015 a las 02:36:41
 -- Versión del servidor: 5.5.32
 -- Versión de PHP: 5.4.19
 
@@ -37,15 +37,11 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `telefonoMovil` varchar(15) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `email` varchar(40) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `direccion` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  PRIMARY KEY (`tipoId`,`numeroId`)
+  `usuarioCrea` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `fechaCreacion` date NOT NULL,
+  PRIMARY KEY (`tipoId`,`numeroId`),
+  KEY `cliente_ibfk_2` (`usuarioCrea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`nombres`, `apellidos`, `tipoId`, `numeroId`, `telefonoFijo`, `telefonoMovil`, `email`, `direccion`) VALUES
-('Luis Angel', 'Duque Tapias', 1, '1028008257', '2307663', '3142694559', 'lduque1992@gmail.com', 'Calle 113A # 64c58 apto 301, bello');
 
 -- --------------------------------------------------------
 
@@ -146,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `venta` (
   PRIMARY KEY (`idVenta`),
   KEY `idCliente` (`idCliente`,`idUsuario`),
   KEY `idUsuario` (`idUsuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -156,14 +152,8 @@ CREATE TABLE IF NOT EXISTS `venta` (
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`tipoId`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `serviciosventa`
---
-ALTER TABLE `serviciosventa`
-  ADD CONSTRAINT `serviciosventa_ibfk_1` FOREIGN KEY (`idservicio`) REFERENCES `servicios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `serviciosventa_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idVenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`tipoId`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`usuarioCrea`) REFERENCES `usuario` (`numeroId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,5 +1,8 @@
 package co.edu.udea.ingenieriaweb.xsoftbackend.dao;
 
+import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Cliente;
+import co.edu.udea.ingenieriaweb.xsoftbackend.exception.DataBaseException;
+
 
 /**
  * 
@@ -9,5 +12,6 @@ package co.edu.udea.ingenieriaweb.xsoftbackend.dao;
  */
 public interface ClienteDAO {
 	
+	public void guardarCliente(Cliente cliente) throws DataBaseException;
 
 }

@@ -7,6 +7,7 @@ import co.edu.udea.ingenieriaweb.xsoftbackend.dao.ClienteDAO;
 import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Cliente;
 import co.edu.udea.ingenieriaweb.xsoftbackend.dto.ClienteId;
 import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Tipodocumento;
+import co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario;
 import co.edu.udea.ingenieriaweb.xsoftbackend.exception.DataBaseException;
 import co.edu.udea.ingenieriaweb.xsoftbackend.exception.LogicException;
 
@@ -42,7 +43,7 @@ public class ClienteBLImp  implements ClienteBl{
 	public void GuardarCliente(ClienteId id, Tipodocumento tipoDocumento,
 			String nombres, String apellidos, String telefonoFijo,
 			String telefonoMovil, String email, String direccion,
-			String usuarioCrea) throws DataBaseException, LogicException {
+			Usuario usuarioCrea) throws DataBaseException, LogicException {
 		
 		if(id==null|| "".equals(id)){
 			throw new LogicException("La cedula no puede ser vacia ni Nula");
@@ -57,10 +58,15 @@ public class ClienteBLImp  implements ClienteBl{
 		cliente.setTelefonoFijo(telefonoFijo);
 		cliente.setTelefonoMovil(telefonoMovil);
 		cliente.setEmail(email);
-//		cliente.setDireccion(direccion);
-//		cliente.setUsuarioCrea(usuarioCrea);
-//		cliente.setFechaCreacion(new Date());
+		cliente.setDireccion(direccion);
+		cliente.setUsuarioCrea(usuarioCrea);
+		cliente.setFechaCreacion(new Date());
 		
+		try{
+		clienteDAO.guardarCliente(cliente);
+		}catch(DataBaseException e){
+			
+		}
 		
 	}
 		
