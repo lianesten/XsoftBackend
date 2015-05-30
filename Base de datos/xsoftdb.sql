@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2015 a las 02:36:41
+-- Tiempo de generación: 30-05-2015 a las 22:56:37
 -- Versión del servidor: 5.5.32
 -- Versión de PHP: 5.4.19
 
@@ -31,7 +31,6 @@ USE `xsoftdb`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `nombres` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `apellidos` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `tipoId` int(11) NOT NULL,
   `numeroId` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `telefonoFijo` varchar(15) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `telefonoMovil` varchar(15) COLLATE utf8mb4_spanish2_ci NOT NULL,
@@ -39,9 +38,16 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `direccion` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `usuarioCrea` varchar(60) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `fechaCreacion` date NOT NULL,
-  PRIMARY KEY (`tipoId`,`numeroId`),
+  PRIMARY KEY (`numeroId`),
   KEY `cliente_ibfk_2` (`usuarioCrea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`nombres`, `apellidos`, `numeroId`, `telefonoFijo`, `telefonoMovil`, `email`, `direccion`, `usuarioCrea`, `fechaCreacion`) VALUES
+('Pablo Andres', 'Diaz ', '120365485', '125478', '3210214587', 'pandigo@gmail.com', 'calle 89#97-94', '1038481420', '2015-05-30');
 
 -- --------------------------------------------------------
 
@@ -83,27 +89,6 @@ CREATE TABLE IF NOT EXISTS `serviciosventa` (
   KEY `idservicio` (`idservicio`),
   KEY `idventa` (`idventa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipodocumento`
---
-
-CREATE TABLE IF NOT EXISTS `tipodocumento` (
-  `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(30) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `abreviatura` varchar(10) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  PRIMARY KEY (`idTipoDocumento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `tipodocumento`
---
-
-INSERT INTO `tipodocumento` (`idTipoDocumento`, `nombre`, `abreviatura`) VALUES
-(1, 'Cedula de Ciudadania', 'c.c'),
-(2, 'Cedula de extranjeria', 'c.e');
 
 -- --------------------------------------------------------
 
@@ -152,8 +137,21 @@ CREATE TABLE IF NOT EXISTS `venta` (
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`tipoId`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`usuarioCrea`) REFERENCES `usuario` (`numeroId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`usuarioCrea`) REFERENCES `usuario` (`numeroId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `serviciosventa`
+--
+ALTER TABLE `serviciosventa`
+  ADD CONSTRAINT `serviciosventa_ibfk_1` FOREIGN KEY (`idservicio`) REFERENCES `servicios` (`id`),
+  ADD CONSTRAINT `serviciosventa_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idVenta`);
+
+--
+-- Filtros para la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`numeroId`),
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`numeroId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

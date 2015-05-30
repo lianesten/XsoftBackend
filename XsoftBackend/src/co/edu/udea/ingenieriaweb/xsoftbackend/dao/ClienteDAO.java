@@ -13,5 +13,5 @@ import co.edu.udea.ingenieriaweb.xsoftbackend.exception.DataBaseException;
 public interface ClienteDAO {
 	
 	public void guardarCliente(Cliente cliente) throws DataBaseException;
-
+	public Cliente obtenerCliente(String identificacion)  throws DataBaseException;
 }

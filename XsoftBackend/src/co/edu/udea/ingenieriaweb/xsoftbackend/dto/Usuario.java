@@ -1,5 +1,8 @@
 package co.edu.udea.ingenieriaweb.xsoftbackend.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 
 /**
@@ -15,19 +18,33 @@ public class Usuario  implements java.io.Serializable {
      private String username;
      private String password;
      private String email;
+     private Set clientes = new HashSet(0);
+     private Set ventas = new HashSet(0);
 
-    public Usuario() {
-    }
+     public Usuario() {
+     }
 
-    public Usuario(String numeroId, String nombres, String apellidos, int privilegio, String username, String password, String email) {
-       this.numeroId = numeroId;
-       this.nombres = nombres;
-       this.apellidos = apellidos;
-       this.privilegio = privilegio;
-       this.username = username;
-       this.password = password;
-       this.email = email;
-    }
+ 	
+     public Usuario(String numeroId, String nombres, String apellidos, int privilegio, String username, String password, String email) {
+         this.numeroId = numeroId;
+         this.nombres = nombres;
+         this.apellidos = apellidos;
+         this.privilegio = privilegio;
+         this.username = username;
+         this.password = password;
+         this.email = email;
+     }
+     public Usuario(String numeroId, String nombres, String apellidos, int privilegio, String username, String password, String email, Set clientes, Set ventas) {
+        this.numeroId = numeroId;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.privilegio = privilegio;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.clientes = clientes;
+        this.ventas = ventas;
+     }
    
     public String getNumeroId() {
         return this.numeroId;
@@ -79,6 +96,20 @@ public class Usuario  implements java.io.Serializable {
         this.email = email;
     }
 
+    public Set getClientes() {
+        return this.clientes;
+    }
+    
+    public void setClientes(Set clientes) {
+        this.clientes = clientes;
+    }
+    public Set getVentas() {
+        return this.ventas;
+    }
+    
+    public void setVentas(Set ventas) {
+        this.ventas = ventas;
+    }
 
 
 

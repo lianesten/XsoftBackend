@@ -3,22 +3,24 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Venta" table="venta" catalog="xsoftdb" optimistic-lock="version">
+    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Venta" table="venta" >
         <id name="idVenta" type="java.lang.Integer">
             <column name="idVenta" />
             <generator class="identity" />
         </id>
-        <property name="idCliente" type="string">
+        
+        <many-to-one name="cliente" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Cliente" fetch="select">
             <column name="idCliente" length="60" not-null="true" />
-        </property>
-        <property name="idUsuario" type="string">
-            <column name="idUsuario" length="30" not-null="true" />
-        </property>
+        </many-to-one>
+        <many-to-one name="usuario" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario" fetch="select">
+            <column name="idUsuario" length="20" not-null="true" />
+        </many-to-one>
+        
         <set name="serviciosventas" table="serviciosventa" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idventa" not-null="true" />
             </key>
-            <one-to-many class="mapping.Serviciosventa" />
+            <one-to-many class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Serviciosventa" />
         </set>
     </class>
 </hibernate-mapping>

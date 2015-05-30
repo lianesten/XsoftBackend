@@ -3,35 +3,37 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Serviciosventa" table="serviciosventa" catalog="xsoftdb" optimistic-lock="version">
-        <composite-id name="id" class="mapping.ServiciosventaId">
-            <key-property name="idservicioVenta" type="int">
+    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Serviciosventa" table="serviciosventa" >
+        
+        <composite-id name="id" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.ServicioVentaId">
+            <key-property name="idservicioVenta" type="java.lang.Integer">
                 <column name="idservicioVenta" />
             </key-property>
-            <key-property name="idservicio" type="int">
+            <key-property name="idservicio" type="java.lang.Integer">
                 <column name="idservicio" />
             </key-property>
-            <key-property name="idventa" type="int">
+            <key-property name="idventa" type="java.lang.Integer">
                 <column name="idventa" />
             </key-property>
         </composite-id>
-        <many-to-one name="servicios" class="mapping.Servicios" update="false" insert="false" fetch="select">
-            <column name="idservicio" not-null="true" />
+        
+        <many-to-one name="servicios" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Servicios" fetch="join"  lazy="proxy">
+            <column name="idservicio"  />
         </many-to-one>
-        <many-to-one name="venta" class="mapping.Venta" update="false" insert="false" fetch="select">
-            <column name="idventa" not-null="true" />
+        <many-to-one name="venta" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Venta" fetch="join"  lazy="proxy">
+            <column name="idventa"  />
         </many-to-one>
-        <property name="totalventa" type="double">
-            <column name="totalventa" precision="22" scale="0" not-null="true" />
+        <property name="totalventa" type="java.lang.Double">
+            <column name="totalventa" />
         </property>
-        <property name="fechaCaducidad" type="date">
-            <column name="fechaCaducidad" length="10" not-null="true" />
+        <property name="fechaCaducidad" type="java.lang.Date">
+            <column name="fechaCaducidad" />
         </property>
-        <property name="cantidad" type="int">
-            <column name="cantidad" not-null="true" />
+        <property name="cantidad" type="java.lang.Intenger">
+            <column name="cantidad" />
         </property>
-        <property name="fechaVenta" type="date">
-            <column name="fechaVenta" length="10" not-null="true" />
+        <property name="fechaVenta" type="java.lang.Date">
+            <column name="fechaVenta"  />
         </property>
     </class>
 </hibernate-mapping>

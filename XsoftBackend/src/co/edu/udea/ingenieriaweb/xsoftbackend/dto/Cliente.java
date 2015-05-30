@@ -1,6 +1,8 @@
 package co.edu.udea.ingenieriaweb.xsoftbackend.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 
@@ -12,16 +14,16 @@ import java.util.Date;
 public class Cliente  implements java.io.Serializable {
 
 
-     private ClienteId id;
-     private Tipodocumento tipodocumento;
-     private Usuario usuarioCrea;
-     private String nombres;
-     private String apellidos;
-     private String telefonoFijo;
-     private String telefonoMovil;
-     private String email;
-     private String direccion;
-     private Date fechaCreacion;
+    private String numeroId;
+    private Usuario usuarioCrea;
+    private String nombres;
+    private String apellidos;
+    private String telefonoFijo;
+    private String telefonoMovil;
+    private String email;
+    private String direccion;
+    private Date fechaCreacion;
+    private Set ventas = new HashSet(0);
      
 
      /**
@@ -41,9 +43,8 @@ public class Cliente  implements java.io.Serializable {
      * @param email
      * @param direccion
      */
-    public Cliente(ClienteId id, Tipodocumento tipodocumento, String nombres, String apellidos, String telefonoFijo, String telefonoMovil, String email, String direccion) {
-       this.id = id;
-       this.tipodocumento = tipodocumento;
+    public Cliente(String id, String nombres, String apellidos, String telefonoFijo, String telefonoMovil, String email, String direccion) {
+       this.numeroId = id;
        this.nombres = nombres;
        this.apellidos = apellidos;
        this.telefonoFijo = telefonoFijo;
@@ -51,36 +52,35 @@ public class Cliente  implements java.io.Serializable {
        this.email = email;
        this.direccion = direccion;
     }
+    
+    public Cliente(String numeroId, Usuario usuario, String nombres, String apellidos, String telefonoFijo, String telefonoMovil, String email, String direccion, Date fechaCreacion, Set ventas) {
+        this.numeroId = numeroId;
+        this.usuarioCrea = usuario;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefonoFijo = telefonoFijo;
+        this.telefonoMovil = telefonoMovil;
+        this.email = email;
+        this.direccion = direccion;
+        this.fechaCreacion = fechaCreacion;
+        this.ventas = ventas;
+     }
    
     /**
      * Metodo que permite obtener el id de un cliente
      * @return id
      */
-    public ClienteId getId() {
-        return this.id;
+    public String getId() {
+        return this.numeroId;
     }
     /**
      * Metodo que permite ingresar el id de un Cliente
      * @param id
      */
-    public void setId(ClienteId id) {
-        this.id = id;
+    public void setId(String id) {
+        this.numeroId = id;
     }
-    /**
-     * Metodo que permite obtener el tipo de documento de un usuario
-     * devuelve un objeto de la clase Tipodocumento con toda la información del tipo
-     * @return tipoDocumento
-     */
-    public Tipodocumento getTipodocumento() {
-        return this.tipodocumento;
-    }
-    /**
-     * Metodo que permite almacenar el tipo de Documento de un Cliente
-     * @param tipodocumento
-     */
-    public void setTipodocumento(Tipodocumento tipodocumento) {
-        this.tipodocumento = tipodocumento;
-    }
+    
     /**
      * Permite obtener los nombres de un cliente
      * @return nombres
@@ -180,6 +180,22 @@ public class Cliente  implements java.io.Serializable {
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	public String getNumeroId() {
+		return numeroId;
+	}
+
+	public void setNumeroId(String numeroId) {
+		this.numeroId = numeroId;
+	}
+
+	public Set getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Set ventas) {
+		this.ventas = ventas;
 	}
 
     

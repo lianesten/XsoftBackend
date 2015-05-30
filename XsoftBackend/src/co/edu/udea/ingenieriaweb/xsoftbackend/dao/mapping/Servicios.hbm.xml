@@ -3,21 +3,22 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Servicios" table="servicios" catalog="xsoftdb" optimistic-lock="version">
+    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Servicios" table="servicios" >
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="nombre" type="string">
-            <column name="nombre" length="60" not-null="true" />
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre"  />
         </property>
-        <property name="descripcion" type="string">
-            <column name="descripcion" length="300" not-null="true" />
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion"  />
         </property>
-        <property name="valor" type="double">
-            <column name="valor" precision="22" scale="0" not-null="true" />
+        <property name="valor" type="java.lang.Double">
+            <column name="valor"  />
         </property>
-        <set name="serviciosventas" table="serviciosventa" inverse="true" lazy="true" fetch="select">
+        
+         <set name="serviciosventas" table="serviciosventa" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idservicio" not-null="true" />
             </key>

@@ -18,6 +18,14 @@ public class DataBaseException extends Exception {
 	public DataBaseException(HibernateException e, String mensaje) {
 		super(mensaje);
 	}
+
+	/**
+	 * Construcutor que maneja las excepciones generadas cuando se hacen operaciones con la DB
+	 * @param e
+	 */
+	public DataBaseException(HibernateException e) {
+		super();
+	}
 	
 	/**
 	 * Constructor temporal, para el controlor general de las excepciones que no se especifican

@@ -3,28 +3,41 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/05/2015 11:07:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario" table="usuario" catalog="xsoftdb" optimistic-lock="version">
-        <id name="numeroId" type="string">
-            <column name="numeroId" length="20" />
+    <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario" table="usuario" >
+        <id name="numeroId" type="java.lang.String">
+            <column name="numeroId" />
             <generator class="assigned" />
         </id>
-        <property name="nombres" type="string">
-            <column name="nombres" length="60" not-null="true" />
+        <property name="nombres" type="java.lang.String">
+            <column name="nombres" />
         </property>
-        <property name="apellidos" type="string">
-            <column name="apellidos" length="60" not-null="true" />
+        <property name="apellidos" type="java.lang.String">
+            <column name="apellidos" />
         </property>
-        <property name="privilegio" type="int">
-            <column name="privilegio" not-null="true" />
+        <property name="privilegio" type="java.lang.Integer">
+            <column name="privilegio" />
         </property>
-        <property name="username" type="string">
-            <column name="username" length="60" not-null="true" />
+        <property name="username" type="java.lang.String">
+            <column name="username" />
         </property>
-        <property name="password" type="string">
-            <column name="password" length="60" not-null="true" />
+        <property name="password" type="java.lang.String">
+            <column name="password" />
         </property>
-        <property name="email" type="string">
-            <column name="email" length="60" not-null="true" />
+        <property name="email" type="java.lang.String">
+            <column name="email" />
         </property>
+        
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuarioCrea" length="20" not-null="true" />
+            </key>
+            <one-to-many class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Cliente" />
+        </set>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUsuario" length="20" not-null="true" />
+            </key>
+            <one-to-many class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Venta" />
+        </set>
     </class>
 </hibernate-mapping>

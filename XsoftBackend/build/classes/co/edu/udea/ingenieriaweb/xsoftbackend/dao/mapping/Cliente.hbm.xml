@@ -5,40 +5,40 @@
 <hibernate-mapping>
     <class name="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Cliente" table="cliente" >
         
-        <composite-id name="ClienteId" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.ClienteId">
-            <key-property name="tipoId" type="java.lang.Integer">
-                <column name="tipoId" />
-            </key-property>
-            <key-property name="numeroId" type="java.lang.String">
-                <column name="numeroId" length="60" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="tipodocumento" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Tipodocumento"  fetch="join"  lazy="proxy">
-            <column name="tipoId" />
-        </many-to-one>
-        <many-to-one name="usuario" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario" fetch="join" lazy="proxy">
+        <id name="numeroId" type="java.lang.String">
+            <column name="numeroId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarioCrea" class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Usuario" fetch="join" lazy="proxy">
             <column name="usuarioCrea" />
         </many-to-one>
         <property name="nombres" type="java.lang.String">
-            <column name="nombres" length="60" not-null="true" />
+            <column name="nombres"  />
         </property>
         <property name="apellidos" type="java.lang.String">
-            <column name="apellidos" length="60" not-null="true" />
+            <column name="apellidos" />
         </property>
         <property name="telefonoFijo" type="java.lang.String">
-            <column name="telefonoFijo" length="15" not-null="true" />
+            <column name="telefonoFijo"  />
         </property>
         <property name="telefonoMovil" type="java.lang.String">
-            <column name="telefonoMovil" length="15" not-null="true" />
+            <column name="telefonoMovil"  />
         </property>
         <property name="email" type="java.lang.String">
-            <column name="email" length="40" not-null="true" />
+            <column name="email"  />
         </property>
         <property name="direccion" type="java.lang.String">
-            <column name="direccion" length="60" not-null="true" />
+            <column name="direccion"  />
         </property>
         <property name="fechaCreacion" type="java.util.Date">
-            <column name="fechaCreacion" length="10" not-null="true" />
+            <column name="fechaCreacion"  />
         </property>
+
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" length="60" not-null="true" />
+            </key>
+            <one-to-many class="co.edu.udea.ingenieriaweb.xsoftbackend.dto.Venta" />
+        </set>
     </class>
 </hibernate-mapping>
