@@ -23,8 +23,6 @@ public class ClienteDAOImp extends HibernateDaoSupport  implements ClienteDAO {
             session.save(cliente);
             session.flush();
             tx.commit();
-			
-			
 		/*catch para caturar algun posible Error*/	
 		}catch(HibernateException e){
 			log.error("Error guardando Cliente"+ e);
@@ -33,7 +31,7 @@ public class ClienteDAOImp extends HibernateDaoSupport  implements ClienteDAO {
 			throw new DataBaseException(e, "Error almacenando un Cliente en la BD");
 			
 		}catch(Exception e){
-			System.out.println("Errro en el ClienteDAOImp");
+			System.out.println("Error en el ClienteDAOImp");
 			e.printStackTrace();
 			log.error("Error guardando Cliente"+ e);
 		}finally{
